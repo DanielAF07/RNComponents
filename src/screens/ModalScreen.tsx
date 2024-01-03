@@ -30,13 +30,13 @@ const ModalScreen = () => {
               style={{
                 fontSize: 35,
                 fontWeight: 'bold',
-                color: 'black',
+                color: colors.background,
               }}>
               Modal Title
             </Text>
             <Text
               style={{
-                color: 'black',
+                color: colors.background,
               }}>
               Modal Body
             </Text>
