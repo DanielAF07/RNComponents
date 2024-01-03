@@ -4,6 +4,7 @@ import HeaderTitle from '../components/HeaderTitle';
 import {Button, Modal, StyleSheet, Text, View} from 'react-native';
 import ItemSeparator from '../components/ItemSeparator';
 import {ThemeContext} from '../context/theme/ThemeContext';
+
 const ModalScreen = () => {
   const {colors} = useContext(ThemeContext);
   const [isVisible, setIsVisible] = useState(false);
@@ -33,7 +34,12 @@ const ModalScreen = () => {
               }}>
               Modal Title
             </Text>
-            <Text>Modal Body</Text>
+            <Text
+              style={{
+                color: 'black',
+              }}>
+              Modal Body
+            </Text>
             <View style={{marginTop: 40}} />
             <ItemSeparator />
             <Button
