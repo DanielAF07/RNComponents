@@ -20,7 +20,7 @@ const PullRefreshScreen = () => {
         <RefreshControl
           refreshing={refreshing}
           onRefresh={onRefresh}
-          progressViewOffset={Platform.OS === 'ios' ? 55 : 0}
+          progressViewOffset={Platform.OS === 'ios' ? 59 : 0}
           tintColor={colors.border}
         />
       }>
