@@ -21,10 +21,28 @@ const useAnimation = (initValue: number) => {
     }).start();
   };
 
+  const fadeIn = (duration: number) => {
+    Animated.timing(value, {
+      toValue: 1,
+      duration: duration,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const fadeOut = (duration: number) => {
+    Animated.timing(value, {
+      toValue: 0,
+      duration: duration,
+      useNativeDriver: true,
+    }).start();
+  };
+
   return {
     value,
     animate,
     animateWithBounce,
+    fadeIn,
+    fadeOut,
   };
 };
 export default useAnimation;
