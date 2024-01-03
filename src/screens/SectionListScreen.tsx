@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import HeaderTitle from '../components/HeaderTitle';
 import {SectionList, Text, View} from 'react-native';
 import {appStyles} from '../theme/appTheme';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import ItemSeparator from '../components/ItemSeparator';
+import {ThemeContext} from '../context/theme/ThemeContext';
 
 interface Casas {
   casa: string;
@@ -89,8 +90,9 @@ const casas: Casas[] = [
 
 const SectionListScreen = () => {
   const {top} = useSafeAreaInsets();
+  const {colors} = useContext(ThemeContext);
   return (
-    <View style={{backgroundColor: 'white', flex: 1}}>
+    <View style={{backgroundColor: colors.background, flex: 1}}>
       <View
         style={{
           ...appStyles.globalMargin,
@@ -101,12 +103,14 @@ const SectionListScreen = () => {
           sections={casas}
           keyExtractor={(item, index) => item + index}
           renderItem={({item}) => (
-            <Text style={{fontSize: 24, marginVertical: 8}}>{item}</Text>
+            <Text style={{fontSize: 24, marginVertical: 8, color: colors.text}}>
+              {item}
+            </Text>
           )}
           stickySectionHeadersEnabled
           ListHeaderComponent={<HeaderTitle title="Section List" />}
           renderSectionHeader={({section}) => (
-            <View style={{backgroundColor: 'white'}}>
+            <View style={{backgroundColor: colors.background}}>
               <HeaderTitle title={section.casa} />
             </View>
           )}

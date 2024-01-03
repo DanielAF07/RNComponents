@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import HeaderTitle from '../components/HeaderTitle';
 import {ActivityIndicator, FlatList, View} from 'react-native';
 import FadeInImage from '../components/FadeInImage';
+import {ThemeContext} from '../context/theme/ThemeContext';
 const InfiniteScrollScreen = () => {
+  const {colors} = useContext(ThemeContext);
   const [imageOffset] = useState(Math.ceil(Math.random() * 520));
   const [numbers, setNumbers] = useState([0, 1, 2, 3, 4, 5]);
 
@@ -27,15 +29,6 @@ const InfiniteScrollScreen = () => {
         }}
       />
     );
-    // <Image
-    //   source={{
-    //     uri: `https://picsum.photos/id/${item + imageOffset}/500/400`,
-    //   }}
-    //   style={{
-    //     width: '100%',
-    //     height: 400,
-    //   }}
-    // />
   };
 
   return (
@@ -59,7 +52,11 @@ const InfiniteScrollScreen = () => {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <ActivityIndicator size={30} color={'blue'} style={{height: 100}} />
+            <ActivityIndicator
+              size={30}
+              color={colors.border}
+              style={{height: 100}}
+            />
           </View>
         }
       />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   View,
   Text,
@@ -14,6 +14,7 @@ import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import useForm from '../hooks/useForm';
 import CustomSwitch from '../components/CustomSwitch';
 import BaseView from '../components/BaseView';
+import {ThemeContext} from '../context/theme/ThemeContext';
 
 const TextInputScreen = () => {
   const {onChange, form: formData} = useForm({
@@ -22,6 +23,8 @@ const TextInputScreen = () => {
     phone: '',
     isSubscribed: false,
   });
+
+  const {colors} = useContext(ThemeContext);
 
   return (
     <KeyboardAvoidingView
@@ -32,9 +35,19 @@ const TextInputScreen = () => {
           <BaseView>
             <HeaderTitle title="TextInputs" />
             <View style={styles.inputContainer}>
-              <Text>Name</Text>
+              <Text
+                style={{
+                  color: colors.text,
+                }}>
+                Name
+              </Text>
               <TextInput
-                style={styles.input}
+                style={{
+                  ...styles.input,
+                  borderColor: colors.border,
+                  color: colors.text,
+                }}
+                placeholderTextColor={colors.border}
                 placeholder="Enter your name"
                 onChangeText={value => onChange(value, 'name')}
                 value={formData.name}
@@ -43,33 +56,73 @@ const TextInputScreen = () => {
               />
             </View>
             <View style={styles.inputContainer}>
-              <Text>Email</Text>
+              <Text
+                style={{
+                  color: colors.text,
+                }}>
+                Email
+              </Text>
               <TextInput
-                style={styles.input}
+                style={{
+                  ...styles.input,
+                  borderColor: colors.border,
+                  color: colors.text,
+                }}
+                placeholderTextColor={colors.border}
                 onChangeText={value => onChange(value, 'email')}
                 value={formData.email}
                 keyboardType="email-address"
               />
             </View>
             <View style={styles.inputContainer}>
-              <Text>Phone</Text>
+              <Text
+                style={{
+                  color: colors.text,
+                }}>
+                Phone
+              </Text>
               <TextInput
-                style={styles.input}
+                style={{
+                  ...styles.input,
+                  borderColor: colors.border,
+                  color: colors.text,
+                }}
+                placeholderTextColor={colors.border}
                 onChangeText={value => onChange(value, 'phone')}
                 value={formData.phone}
                 keyboardType="phone-pad"
               />
             </View>
             <View style={styles.inputContainer}>
-              <Text>Subscribe</Text>
+              <Text
+                style={{
+                  color: colors.text,
+                }}>
+                Subscribe
+              </Text>
               <CustomSwitch
                 value={formData.isSubscribed}
                 onValueChange={value => onChange(value, 'isSubscribed')}
               />
             </View>
-            <Text>{JSON.stringify(formData, null, 3)}</Text>
-            <Text>{JSON.stringify(formData, null, 3)}</Text>
-            <Text>{JSON.stringify(formData, null, 3)}</Text>
+            <Text
+              style={{
+                color: colors.text,
+              }}>
+              {JSON.stringify(formData, null, 3)}
+            </Text>
+            <Text
+              style={{
+                color: colors.text,
+              }}>
+              {JSON.stringify(formData, null, 3)}
+            </Text>
+            <Text
+              style={{
+                color: colors.text,
+              }}>
+              {JSON.stringify(formData, null, 3)}
+            </Text>
           </BaseView>
           <View style={{height: 50}} />
         </TouchableWithoutFeedback>

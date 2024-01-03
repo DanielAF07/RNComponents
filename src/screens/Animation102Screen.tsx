@@ -1,9 +1,11 @@
-import React, {useRef} from 'react';
+import React, {useContext, useRef} from 'react';
 import {Animated, PanResponder, StyleSheet, View} from 'react-native';
 import HeaderTitle from '../components/HeaderTitle';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {ThemeContext} from '../context/theme/ThemeContext';
 
 const Animation102Screen = () => {
+  const {colors} = useContext(ThemeContext);
   const {top} = useSafeAreaInsets();
   const pan = useRef(new Animated.ValueXY()).current;
 
@@ -35,7 +37,11 @@ const Animation102Screen = () => {
       <View style={styles.container}>
         <Animated.View
           {...panResponder.panHandlers}
-          style={[pan.getLayout(), styles.box]}
+          style={[
+            pan.getLayout(),
+            styles.box,
+            {backgroundColor: colors.primary},
+          ]}
         />
       </View>
     </View>
@@ -50,7 +56,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   box: {
-    backgroundColor: '#61dafb',
     width: 150,
     height: 150,
     borderRadius: 8,

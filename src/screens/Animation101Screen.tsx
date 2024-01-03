@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Animated, Button, StyleSheet, View} from 'react-native';
 import useAnimation from '../hooks/useAnimation';
 import HeaderTitle from '../components/HeaderTitle';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {ThemeContext} from '../context/theme/ThemeContext';
 
 const Animation101Screen = () => {
   const {top} = useSafeAreaInsets();
+  const {colors} = useContext(ThemeContext);
   const opacity = useAnimation(0);
   const yPos = useAnimation(-300);
 
@@ -25,7 +27,8 @@ const Animation101Screen = () => {
       <View style={styles.container}>
         <Animated.View
           style={{
-            ...styles.purpleBox,
+            ...styles.box,
+            backgroundColor: colors.primary,
             opacity: opacity.value,
             transform: [{translateY: yPos.value}],
           }}
@@ -44,8 +47,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  purpleBox: {
-    backgroundColor: '#5856D6',
+  box: {
     width: 150,
     height: 150,
     borderRadius: 8,

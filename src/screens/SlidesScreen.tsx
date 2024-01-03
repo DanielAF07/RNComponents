@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 
 import {
   Animated,
@@ -15,6 +15,7 @@ import Carousel, {Pagination} from 'react-native-snap-carousel';
 import Icon from 'react-native-vector-icons/Ionicons';
 import useAnimation from '../hooks/useAnimation';
 import {useNavigation} from '@react-navigation/native';
+import {ThemeContext} from '../context/theme/ThemeContext';
 
 const {width: screenWidth} = Dimensions.get('window');
 
@@ -43,6 +44,7 @@ const items: Slide[] = [
 ];
 
 const SlidesScreen = () => {
+  const {colors} = useContext(ThemeContext);
   const navigation = useNavigation();
   const [buttonActive, setButtonActive] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -60,7 +62,7 @@ const SlidesScreen = () => {
       <View
         style={{
           flex: 1,
-          backgroundColor: 'white',
+          backgroundColor: colors.background,
           borderRadius: 5,
           padding: 40,
           justifyContent: 'center',
@@ -73,8 +75,10 @@ const SlidesScreen = () => {
             resizeMode: 'center',
           }}
         />
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.subtitle}>{item.desc}</Text>
+        <Text style={{...styles.title, color: colors.text}}>{item.title}</Text>
+        <Text style={{...styles.subtitle, color: colors.text}}>
+          {item.desc}
+        </Text>
       </View>
     );
   };
@@ -82,7 +86,7 @@ const SlidesScreen = () => {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: colors.background,
         paddingTop: 50,
       }}>
       <Carousel
@@ -101,7 +105,7 @@ const SlidesScreen = () => {
           width: 10,
           height: 10,
           borderRadius: 10,
-          backgroundColor: 'rgba(0,0,0,0.5)',
+          backgroundColor: colors.primary,
         }}
       />
       <Animated.View
@@ -112,14 +116,15 @@ const SlidesScreen = () => {
         }}>
         <TouchableOpacity
           style={{
+            marginBottom: 24,
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
             marginLeft: 'auto',
             marginRight: 20,
-            backgroundColor: '#5856D6',
+            backgroundColor: colors.primary,
             borderRadius: 10,
-            padding: 10,
+            padding: 8,
             width: 150,
           }}
           activeOpacity={0.8}

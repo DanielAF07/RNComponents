@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import BaseView from '../components/BaseView';
 import HeaderTitle from '../components/HeaderTitle';
 import {Button, Modal, StyleSheet, Text, View} from 'react-native';
 import ItemSeparator from '../components/ItemSeparator';
+import {ThemeContext} from '../context/theme/ThemeContext';
 const ModalScreen = () => {
+  const {colors} = useContext(ThemeContext);
   const [isVisible, setIsVisible] = useState(false);
   return (
     <BaseView>
@@ -18,9 +20,20 @@ const ModalScreen = () => {
         {/* Background */}
         <View style={styles.background}>
           {/* Content */}
-          <View style={styles.container}>
-            <HeaderTitle title="Modal" />
-            <Text>Body modal</Text>
+          <View
+            style={{
+              ...styles.container,
+              backgroundColor: colors.card,
+            }}>
+            <Text
+              style={{
+                fontSize: 35,
+                fontWeight: 'bold',
+                color: 'black',
+              }}>
+              Modal Title
+            </Text>
+            <Text>Modal Body</Text>
             <View style={{marginTop: 40}} />
             <ItemSeparator />
             <Button
@@ -45,7 +58,6 @@ const styles = StyleSheet.create({
   },
   container: {
     paddingVertical: 16,
-    backgroundColor: 'white',
     width: 300,
     justifyContent: 'center',
     alignItems: 'center',
