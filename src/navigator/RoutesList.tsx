@@ -9,12 +9,14 @@ import PullRefreshScreen from '../screens/PullRefreshScreen';
 import SectionListScreen from '../screens/SectionListScreen';
 import ModalScreen from '../screens/ModalScreen';
 import InfiniteScrollScreen from '../screens/InfiniteScrollScreen';
+import SlidesScreen from '../screens/SlidesScreen';
+import ThemeScreen from '../screens/ThemeScreen';
 
 export const routesList: MenuItem[] = [
   {
     label: 'Home',
-    name: 'Home',
-    hide: true,
+    name: 'HomeScreen',
+    hidden: true,
     component: HomeScreen,
   },
   {
@@ -71,6 +73,18 @@ export const routesList: MenuItem[] = [
     icon: 'download-outline',
     component: InfiniteScrollScreen,
   },
+  {
+    label: 'Slides',
+    name: 'SlidesScreen',
+    icon: 'flower-outline',
+    component: SlidesScreen,
+  },
+  {
+    label: 'Themes',
+    name: 'ThemesScreen',
+    icon: 'flask-outline',
+    component: ThemeScreen,
+  },
 ];
 
-export const menuItems = routesList.filter(item => !item.hide);
+export const menuItems = routesList.filter(item => !item.hidden);
